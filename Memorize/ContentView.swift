@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    let emojis: [String] = ["🥎", "💛", "🔔",  "😡", "🦞", "🥎", "💛", "🔔",  ]
+    let emojis: [String] = ["🥎", "💛", "🔔",  "😡", "🦞", "🥎", "💛", "🔔","🥎", "💛", "🔔",  "😡", "🦞", "🥎", "💛", "🔔"  ]
     @State var cardCount: Int = 4
     var body: some View {
         VStack{
-            cards
+            ScrollView{
+                cards
+            }
             cardCountAdjusters
-        }.padding()
+            }.padding()
         
     }
     
@@ -22,6 +24,7 @@ struct ContentView: View {
         LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
             ForEach(0..<cardCount, id: \.self) { index in
                 CardView(content: emojis[index])
+                    .aspectRatio(2/3, contentMode: .fit)
             }
             .foregroundColor(.orange)
         }
